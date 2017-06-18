@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@home');
 
+/**
+ * Event related routes
+ */
 Route::get('events', 'Event\EventController@index')->name('events');
