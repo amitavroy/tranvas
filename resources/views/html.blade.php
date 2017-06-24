@@ -10,6 +10,8 @@
     @yield('header-styles')
 </head>
 <body>
+    @include('partials.menu')
+
     <div class="container">
 
         <div class="content-container">
@@ -18,6 +20,7 @@
 
     </div>
 
+    <script src="{{mix('js/app.js')}}"></script>
     @yield('footer-script')
 </body>
 </html>
