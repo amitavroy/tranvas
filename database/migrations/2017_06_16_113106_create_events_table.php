@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedInteger('user_id');
+            $table->string('slug');
             $table->timestamps();
 
             $table->index('user_id');

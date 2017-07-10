@@ -7,9 +7,9 @@
                 <div class="panel-heading">
                     <h3 class="panel-heading">{{$event->title}}</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body content">
                     <p><strong>Description:</strong></p>
-                    {{$event->description}}
+                    {!! $event->description !!}
                 </div>
 
                 <div id="map"></div>

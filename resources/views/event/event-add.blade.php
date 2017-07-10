@@ -40,7 +40,8 @@
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" class="form-control" placeholder="Enter the description"></textarea>
+                            <textarea name="description" class="form-control"
+                                      placeholder="Enter the description" id="description"></textarea>
                             <span class="error">{{$errors->first('description')}}</span>
                         </div>
 
@@ -67,3 +68,9 @@
         </div>
     </form>
 @endsection
+
+@section('footer-script')
+    <script>
+        CKEDITOR.replace('description')
+    </script>
+    @endsection

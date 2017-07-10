@@ -21,6 +21,7 @@
 
     </div>
 
+    <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
     <script src="{{mix('js/app.js')}}"></script>
     @yield('footer-script')
 </body>

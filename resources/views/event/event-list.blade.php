@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-heading">
-                            <a href="{{route('event-view', $upcomingEvent->id)}}">
+                            <a href="{{route('event-view', $upcomingEvent->slug)}}">
                                 #{{$upcomingEvent->id}} {{$upcomingEvent->title}}
                             </a>
                         </h3>
@@ -24,7 +24,7 @@
                             <strong>Created by: </strong><a href="#">{{$upcomingEvent->creator->name}}</a>
                         </div>
                         <div class="description">
-                            <p>{{$upcomingEvent->description}}</p>
+                            {!! limit_words($upcomingEvent->description, 50) !!}
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-heading">
-                            <a href="{{route('event-view', $pastEvent->id)}}">
+                            <a href="{{route('event-view', $pastEvent->slug)}}">
                                 #{{$pastEvent->id}} {{$pastEvent->title}}
                             </a>
                         </h3>
@@ -55,7 +55,7 @@
                             <strong>Created by: </strong><a href="#">{{$pastEvent->creator->name}}</a>
                         </div>
                         <div class="description">
-                            <p>{{$pastEvent->description}}</p>
+                            <p>{!! limit_words($pastEvent->description, 50) !!}</p>
                         </div>
                     </div>
                 </div>
