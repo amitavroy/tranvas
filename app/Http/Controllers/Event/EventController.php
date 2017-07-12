@@ -7,6 +7,7 @@ use App\Modules\Event\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -64,8 +65,9 @@ class EventController extends Controller
             'lat' => $request->input('lat'),
             'long' => $request->input('lng'),
             'user_id' => $request->user()->id,
+            'slug' => Str::slug($request->input('title')),
         ]);
 
-        return redirect()->back();
+        return redirect()->route('events');
     }
 }

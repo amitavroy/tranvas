@@ -4,6 +4,7 @@ namespace Tests\Feature\Event;
 
 use App\Modules\Event\Event;
 use App\User;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -49,5 +50,39 @@ class EventTest extends TestCase
             ->assertStatus(200)
             ->assertSeeText($event->title)
             ->assertSeeText($event->creator->name);
+    }
+
+    /** @test */
+    public function a_user_can_create_an_event_and_view_it()
+    {
+        $faker = Factory::create();
+        $title = $faker->sentence(3);
+
+        $postData = [
+            'title' => $title,
+            'description' => $faker->paragraph(3),
+            'address' => $faker->address,
+            'start_date' => $faker->dateTime,
+            'end_date' => $faker->dateTime,
+            'lat' => $faker->latitude,
+            'lng' => $faker->longitude,
+        ];
+
+        $this->actingAs($this->user)
+            ->post(route('event-save'), $postData)
+            ->assertRedirect(route('events'));
+
+        $this->get(route('events'))
+            ->assertSee($title);
+    }
+
+    /** @test */
+    public function confirm_fields_are_required_to_create_event()
+    {
+        $this->actingAs($this->user)
+            ->post(route('event-save'), [])
+            ->assertSessionHasErrors([
+                'title', 'description', 'address', 'start_date', 'end_date', 'lat', 'lng'
+            ]);
     }
 }
