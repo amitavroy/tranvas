@@ -4,6 +4,7 @@ namespace App\Modules\Event\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Event\Event;
+use App\Modules\Event\Repositories\EventsRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,16 +12,22 @@ use Illuminate\Support\Str;
 
 class EventsController extends Controller
 {
+    protected $events;
+
+    /**
+     * EventsController constructor.
+     * @param EventsRepository $eventsRepository
+     */
+    public function __construct(EventsRepository $eventsRepository)
+    {
+        $this->events = $eventsRepository;
+    }
+
     public function index()
     {
-        $upcomingEvents = Event::where('end_date', '>', Carbon::today()->format('Y-m-d'))
-            ->orderBy('start_date', 'asc')
-            ->get();
+        $upcomingEvents = $this->events->getUpcomingEvents();
 
-        $pastEvents = Event::where('end_date', '<', Carbon::today()->format('Y-m-d'))
-            ->orderBy('start_date', 'asc')
-            ->limit(3)
-            ->get();
+        $pastEvents = $this->events->getPastEvents();
 
         return view('event/event-list')
             ->with('upcomingEvents', $upcomingEvents)
@@ -56,7 +63,7 @@ class EventsController extends Controller
                 ->withInput();
         }
 
-        Event::create([
+        $attributes = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'address' => $request->input('address'),
@@ -66,7 +73,9 @@ class EventsController extends Controller
             'long' => $request->input('lng'),
             'user_id' => $request->user()->id,
             'slug' => Str::slug($request->input('title')),
-        ]);
+        ];
+
+        $this->events->create($attributes);
 
         return redirect()->route('events');
     }
