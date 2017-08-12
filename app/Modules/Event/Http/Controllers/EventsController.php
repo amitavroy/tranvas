@@ -5,7 +5,6 @@ namespace App\Modules\Event\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Event\Event;
 use App\Modules\Event\Repositories\EventsRepository;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -26,6 +25,7 @@ class EventsController extends Controller
     public function index()
     {
         $upcomingEvents = $this->events->getUpcomingEvents();
+//        dd($upcomingEvents);
 
         $pastEvents = $this->events->getPastEvents();
 

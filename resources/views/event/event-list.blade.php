@@ -25,8 +25,15 @@
                             <br>
                             <strong>Created by: </strong><a href="#">{{$upcomingEvent->creator->name}}</a>
                         </div>
-                        <div class="description">
+                        <div class="description margin-bottom-20">
                             {!! limit_words($upcomingEvent->description, 50) !!}
+                        </div>
+                        <div class="register-button-container">
+                            @if($upcomingEvent->user === null)
+                                <button class="btn btn-primary">Register</button>
+                            @else
+                                <button class="btn btn-warning">De-register</button>
+                            @endif
                         </div>
                     </div>
                 </div>
