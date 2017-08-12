@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Event;
+namespace App\Modules\Event\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Event\Event;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class EventController extends Controller
+class EventsController extends Controller
 {
     public function index()
     {

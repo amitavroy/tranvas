@@ -6,10 +6,11 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      * Event related routes
      */
-    Route::get('events', 'Event\EventController@index')->name('events');
-    Route::get('events/add', 'Event\EventController@add')->name('event-add');
-    Route::post('events/save', 'Event\EventController@store')->name('event-save');
-    Route::get('events/view/{event}', 'Event\EventController@view')->name('event-view');
+    $eventsController = "\App\Modules\Event\Http\Controllers\EventsController";
+    Route::get('events', "{$eventsController}@index")->name('events');
+    Route::get('events/add', "{$eventsController}@add")->name('event-add');
+    Route::post('events/save', "{$eventsController}@store")->name('event-save');
+    Route::get('events/view/{event}', "{$eventsController}@view")->name('event-view');
 });
 
 Auth::routes();
