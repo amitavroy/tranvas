@@ -8,11 +8,14 @@
   import {registrationUrl} from './../config'
 
   export default {
-    props: ['text', 'mode'],
+    props: ['text', 'mode', 'eventId'],
 
     methods: {
       handleRegistration () {
-        axios.post(registrationUrl, {check: 1})
+        let postData = {
+          eventId: this.eventId
+        }
+        axios.post(registrationUrl, postData)
           .then(response => {
             console.log('response', response)
           })

@@ -3,10 +3,9 @@
 namespace App\Modules\Event\Events;
 
 use App\Modules\Event\Event;
-use App\Modules\Event\Mail\RegistrationConfirm;
+use App\Modules\Event\Jobs\RegConfirmMail;
 use App\Modules\Event\Participant;
 use App\User;
-use Illuminate\Support\Facades\Mail;
 
 class EventRegistered
 {
@@ -29,13 +28,11 @@ class EventRegistered
         $user = User::find($this->participant->user_id);
         $event = Event::find($this->participant->event_id);
 
-        $this->sendConfirmationToUser($user);
+        $this->sendConfirmationToUser($user, $event);
     }
 
-    private function sendConfirmationToUser(User $user)
+    private function sendConfirmationToUser($user, $event)
     {
-        Mail::to($user)
-            ->subject('Event registration confirmation')
-            ->send(new RegistrationConfirm($user));
+        dispatch(new RegConfirmMail($user, $event));
     }
 }

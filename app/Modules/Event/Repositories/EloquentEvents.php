@@ -3,6 +3,7 @@
 namespace App\Modules\Event\Repositories;
 
 use App\Modules\Event\Event;
+use App\Modules\Event\Events\EventRegistered;
 use App\Modules\Event\Participant;
 use App\Repositories\AbstractRepository;
 use Carbon\Carbon;
@@ -52,5 +53,18 @@ class EloquentEvents extends AbstractRepository implements EventsRepository
             'event_id' => $event->id,
             'user_id' => Auth::user()->id,
         ]);
+
+        event(new EventRegistered($participant));
+
+        return true;
+    }
+
+    public function deRegisterFromEvent(Event $event)
+    {
+        Participant::where('event_id', $event->id)
+            ->where('user_id', Auth::user()->id)
+            ->delete();
+
+        return true;
     }
 }
