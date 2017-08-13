@@ -30,9 +30,9 @@
                         </div>
                         <div class="register-button-container">
                             @if($upcomingEvent->user === null)
-                                <button class="btn btn-primary">Register</button>
+                                <event-registration text="Register" mode="btn-primary"></event-registration>
                             @else
-                                <button class="btn btn-warning">De-register</button>
+                                <event-registration text="De-register" mode="btn-warning"></event-registration>
                             @endif
                         </div>
                     </div>
