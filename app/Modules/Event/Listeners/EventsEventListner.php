@@ -8,7 +8,6 @@ class EventsEventListner
 {
     public function userRegistered(EventRegistered $event)
     {
-        
     }
 
     public function subscribe($events)
