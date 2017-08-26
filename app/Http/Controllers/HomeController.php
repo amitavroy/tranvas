@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index(TweetHistory $history)
     {
+//        $history->addTweet([123,123,123]);
         $t = $history::all();
+//        dump($t);
 
         return view('home')->with('initTweets', $t);
     }

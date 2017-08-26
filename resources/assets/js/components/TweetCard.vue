@@ -49,7 +49,18 @@
       return {
         tweets: []
       }
+    },
+
+    sockets: {
+    tweetChannel (data) {
+        var tweet = new Tweet(data.data);
+
+        this.tweets.unshift(tweet);
+
+        this.tweets = this.tweets.slice(0, 10);
+      }
     }
+
   }
 </script>
 

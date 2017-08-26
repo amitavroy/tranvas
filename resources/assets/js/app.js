@@ -15,14 +15,16 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import * as VueGoogleMaps from 'vue2-google-maps'
+import * as VueGoogleMaps from 'vue2-google-maps';
+import VueSocketio from 'vue-socket.io';
 
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyB0T-uGFTd8aQ_a7mZmhN0hX9F5dhVUeH4',
     libraries: 'places',
   }
-})
+});
+Vue.use(VueSocketio, 'http://localhost:3000');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('event-location', require('./components/EventLocation.vue'));

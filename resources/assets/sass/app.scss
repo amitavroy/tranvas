@@ -8,6 +8,8 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import "animate.css";
+
 // my custom classes
 @for $i from 1 through 10 {
   .margin-bottom-#{$i * 10} {
