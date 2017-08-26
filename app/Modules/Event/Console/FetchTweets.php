@@ -2,6 +2,7 @@
 
 namespace App\Modules\Event\Console;
 
+use App\Modules\Event\Events\NewTweet;
 use Illuminate\Console\Command;
 
 class FetchTweets extends Command
@@ -20,6 +21,7 @@ class FetchTweets extends Command
             ], function (array $tweet) {
                 echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
                 \Log::info("{$tweet['user']['screen_name']} tweeted {$tweet['text']}");
+                event(new NewTweet($tweet));
             })
             ->startListening();
     }

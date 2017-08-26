@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\Event\Services\TweetHistory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TweetHistory $history)
     {
+//        $history->addTweet([123,123,123]);
+        $t = $history::all();
+        dump($t);
         return view('home');
     }
 
