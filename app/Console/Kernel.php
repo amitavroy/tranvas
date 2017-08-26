@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Modules\Event\Console\FetchTweets;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        FetchTweets::class,
     ];
 
     /**
@@ -26,6 +28,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function () {
+            \Log::info("I was here @ " . Carbon::now());
+        })->everyMinute();
+
+        $schedule->command('fetch:twitter-stream');
     }
 
     /**
