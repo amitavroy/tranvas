@@ -10,6 +10,15 @@
         </div>
       </div>
       <div class="tweet__body_content" v-html="tweet.html"></div>
+      <div v-if="tweet.hasQuote" class="quote">
+        <small>In reply to</small>
+        <div class="quote__meta_data clearfix">
+          <div class="tweet__user_data">
+            {{ tweet.quoteMedia.userName }} <span class="tweet__user_data__screen_name">{{ tweet.quoteMedia.userScreenName }}</span>
+          </div>
+        </div>
+        <div class="tweet__body_content" v-html="tweet.quoteMedia.text"></div>
+      </div>
     </div>
   </section>
 </template>
@@ -43,6 +52,11 @@
     border: solid 1px #e6ecf0;
     padding: 3px 2px 3px 10px;
     margin-bottom: 10px;
+    .quote {
+      border-top: solid 1px #e6ecf0;
+      margin-top: 13px;
+      padding: 2px 2px 3px 18px;
+    }
     .tweet__meta_data {
       .tweet__screen_name, .tweet__time {
         float: left;
