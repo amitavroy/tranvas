@@ -4,6 +4,7 @@ import * as linkify from 'linkifyjs';;
 import linkifyHtml from 'linkifyjs/html';
 import hashtag from 'linkifyjs/plugins/hashtag'; // optional
 import mention from 'linkifyjs/plugins/mention';
+import {get} from 'lodash';
 
 hashtag(linkify);
 
@@ -48,10 +49,7 @@ class Tweet {
   }
 
   get hasQuote() {
-    if (this.tweet.extended_tweet)
-      return true;
-    else
-      return false;
+    return this.tweet.is_quote_status;
   }
 
   get quoteMedia() {
@@ -65,6 +63,16 @@ class Tweet {
       userName: this.tweet.quoted_status.user.name,
       userScreenName: "@" + this.tweet.quoted_status.user.screen_name
     }
+  }
+
+  get tweetLink() {
+    let string = "https://twitter.com/" + this.tweet['user']['screen_name']
+      + "/status/" + this.tweet.id_str;
+    return string;
+  }
+
+  get hasTweetMedia() {
+    return get(this.tweet, 'extended_tweet.extended_entities.media[0].media_url_https', '');
   }
 }
 

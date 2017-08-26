@@ -21014,6 +21014,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -37120,6 +37127,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "tweet__meta_data clearfix"
     }, [_c('div', {
+      staticClass: "link"
+    }, [_c('a', {
+      attrs: {
+        "href": tweet.tweetLink,
+        "target": "_blank"
+      }
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-play"
+    })])]), _vm._v(" "), _c('div', {
       staticClass: "tweet__user_data"
     }, [_vm._v("\n        " + _vm._s(tweet.authorName) + " "), _c('span', {
       staticClass: "tweet__user_data__screen_name"
@@ -37134,7 +37150,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "innerHTML": _vm._s(tweet.html)
       }
-    }), _vm._v(" "), (tweet.hasQuote) ? _c('div', {
+    }), _vm._v(" "), (tweet.hasTweetMedia) ? _c('div', {
+      staticClass: "tweet__media",
+      style: ({
+        'background-image': 'url(' + tweet.hasTweetMedia + ')'
+      })
+    }) : _vm._e(), _vm._v(" "), (tweet.hasQuote) ? _c('div', {
       staticClass: "quote"
     }, [_c('small', [_vm._v("In reply to")]), _vm._v(" "), _c('div', {
       staticClass: "quote__meta_data clearfix"
@@ -49333,6 +49354,8 @@ module.exports = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_linkifyjs_plugins_hashtag___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_linkifyjs_plugins_hashtag__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_linkifyjs_plugins_mention__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_linkifyjs_plugins_mention___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_linkifyjs_plugins_mention__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49342,6 +49365,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 ;
 
  // optional
+
 
 
 __WEBPACK_IMPORTED_MODULE_4_linkifyjs_plugins_hashtag___default()(__WEBPACK_IMPORTED_MODULE_2_linkifyjs__);
@@ -49370,19 +49394,9 @@ var Tweet = function () {
     }
   }, {
     key: 'image',
-    get: function (_get) {
-      function get() {
-        return _get.apply(this, arguments);
-      }
-
-      get.toString = function () {
-        return _get.toString();
-      };
-
-      return get;
-    }(function () {
-      return get(this.tweet, 'extended_entities.media[0].media_url_https', '');
-    })
+    get: function get() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_lodash__["get"])(this.tweet, 'extended_entities.media[0].media_url_https', '');
+    }
   }, {
     key: 'date',
     get: function get() {
@@ -49406,7 +49420,7 @@ var Tweet = function () {
   }, {
     key: 'hasQuote',
     get: function get() {
-      if (this.tweet.extended_tweet) return true;else return false;
+      return this.tweet.is_quote_status;
     }
   }, {
     key: 'quoteMedia',
@@ -49421,6 +49435,17 @@ var Tweet = function () {
         userName: this.tweet.quoted_status.user.name,
         userScreenName: "@" + this.tweet.quoted_status.user.screen_name
       };
+    }
+  }, {
+    key: 'tweetLink',
+    get: function get() {
+      var string = "https://twitter.com/" + this.tweet['user']['screen_name'] + "/status/" + this.tweet.id_str;
+      return string;
+    }
+  }, {
+    key: 'hasTweetMedia',
+    get: function get() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_lodash__["get"])(this.tweet, 'extended_tweet.extended_entities.media[0].media_url_https', '');
     }
   }]);
 
@@ -65815,7 +65840,7 @@ module.exports = twemoji;
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(26)();
-exports.push([module.i, "\n.tweet {\n  background-color: white;\n  border: solid 1px #e6ecf0;\n  padding: 3px 2px 3px 10px;\n  margin-bottom: 10px;\n}\n.tweet .quote {\n    border-top: solid 1px #e6ecf0;\n    margin-top: 13px;\n    padding: 2px 2px 3px 18px;\n}\n.tweet .tweet__meta_data .tweet__screen_name, .tweet .tweet__meta_data .tweet__time {\n    float: left;\n}\n.tweet .tweet__meta_data .tweet__screen_name {\n    padding-right: 15px;\n}\n.tweet .tweet__user_data__screen_name {\n    color: #558AE0;\n}\n.tweet .tweet__body_content {\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\n.tweet {\n  background-color: white;\n  border: solid 1px #e6ecf0;\n  padding: 3px 2px 3px 10px;\n  margin-bottom: 10px;\n}\n.tweet .tweet__media {\n    text-align: center;\n    width: 99%;\n    height: 200px;\n    background-size: contain;\n    background-repeat: no-repeat;\n}\n.tweet .quote {\n    border-top: solid 1px #e6ecf0;\n    margin-top: 13px;\n    padding: 2px 2px 3px 18px;\n}\n.tweet .tweet__meta_data .tweet__screen_name, .tweet .tweet__meta_data .tweet__time {\n    float: left;\n}\n.tweet .tweet__meta_data .link {\n    float: right;\n}\n.tweet .tweet__meta_data .tweet__screen_name {\n    padding-right: 15px;\n}\n.tweet .tweet__user_data__screen_name {\n    color: #558AE0;\n}\n.tweet .tweet__body_content {\n    color: black;\n}\n", ""]);
 
 /***/ }),
 /* 296 */
