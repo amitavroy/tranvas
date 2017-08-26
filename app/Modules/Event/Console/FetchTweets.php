@@ -15,9 +15,9 @@ class FetchTweets extends Command
         app(\Spatie\LaravelTwitterStreamingApi\TwitterStreamingApi::class)
             ->publicStream()
             ->whenHears([
-                'test123',
-                'laravel'
-            ], function(array $tweet) {
+                '#vuejs',
+                '#laravel'
+            ], function (array $tweet) {
                 echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
                 \Log::info("{$tweet['user']['screen_name']} tweeted {$tweet['text']}");
             })
