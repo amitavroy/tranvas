@@ -20006,7 +20006,10 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
     libraries: 'places'
   }
 });
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://localhost:3000');
+
+var socketServer = 'http://' + window.location.host + ':3000';
+// var socketServer = 'http://localhost:3000';
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, socketServer);
 
 Vue.component('example', __webpack_require__(101));
 Vue.component('event-location', __webpack_require__(99));

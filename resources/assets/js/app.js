@@ -24,7 +24,10 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places',
   }
 });
-Vue.use(VueSocketio, 'http://localhost:3000');
+
+var socketServer = 'http://' + window.location.host + ':3000';
+// var socketServer = 'http://localhost:3000';
+Vue.use(VueSocketio, socketServer);
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('event-location', require('./components/EventLocation.vue'));
