@@ -8,7 +8,7 @@ redis.subscribe('testChannel', function(err, count) {
 redis.subscribe('tweetChannel', function(err, count) {});
 
 redis.on('message', function(channel, message) {
-    // console.log('Message Recieved: ' + message);
+    console.log('Message Recieved: ' + message);
     message = JSON.parse(message);
     io.emit(channel, message.data);
 });
