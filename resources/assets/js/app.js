@@ -25,7 +25,7 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
-var socketServer = 'http://' + window.location.host + ':3000';
+var socketServer = 'http://139.59.41.94:3000';
 // var socketServer = 'http://localhost:3000';
 Vue.use(VueSocketio, socketServer);
 
