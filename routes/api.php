@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:api', 'prefix' => 'v1'], function () {
     $eventApiController = "\App\Modules\Event\Http\Controllers\EventsApiController";
     Route::post('handleRegistration', "{$eventApiController}@handleRegistration");
+    Route::post('stock-data', 'Auth\UserController@stockData');
 });

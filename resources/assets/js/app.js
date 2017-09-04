@@ -27,6 +27,8 @@ Vue.use(VueGoogleMaps, {
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('event-location', require('./components/EventLocation.vue'));
 Vue.component('event-registration', require('./components/EventRegistration.vue'));
+Vue.component('clock', require('./components/Clock.vue'));
+Vue.component('stock', require('./components/Stock.vue'));
 
 const app = new Vue({
     el: '#app'
