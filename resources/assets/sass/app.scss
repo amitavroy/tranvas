@@ -8,6 +8,43 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// bootstrap overrides
+a:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+  outline-offset: -2px;
+}
+a:focus, a:hover {
+  color: #18BC9C;
+  text-decoration: underline;
+}
+a:active, a:hover {
+  outline: 0;
+}
+a {
+  color: #18BC9C;
+  text-decoration: none;
+  background-color: transparent;
+}
+.navbar-inverse {
+  background-color: #18BC9C;
+}
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: #149c82;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form, .navbar-inverse {
+  border-color: transparent;
+}
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #fff;
+  background-color: #15a589;
+}
+
 // my custom classes
 @for $i from 1 through 10 {
   .margin-bottom-#{$i * 10} {
