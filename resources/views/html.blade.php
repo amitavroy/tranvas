@@ -10,6 +10,7 @@
       window.Laravel = { csrfToken: '{{ csrf_token() }}', basePath: '{{ url("/") }}/' }
     </script>
     <title>Tranvas</title>
+    <link rel="stylesheet" href="{{ url('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     @yield('header-styles')
 </head>

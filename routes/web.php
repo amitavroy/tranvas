@@ -4,6 +4,7 @@ Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('user/profile', 'Auth\ProfileController@index')->name('profile');
+    Route::post('user/profile', 'Auth\ProfileController@store')->name('profile-save');
 
     /**
      * Event related routes

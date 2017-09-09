@@ -35599,6 +35599,7 @@ Vue.component('event-location', __webpack_require__(221));
 Vue.component('event-registration', __webpack_require__(222));
 Vue.component('clock', __webpack_require__(220));
 Vue.component('stock', __webpack_require__(224));
+Vue.component('google-map', __webpack_require__(301));
 
 var app = new Vue({
   el: '#app'
@@ -65255,6 +65256,111 @@ setToStringTag(global.JSON, 'JSON', true);
 __webpack_require__(172);
 module.exports = __webpack_require__(173);
 
+
+/***/ }),
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['lat', 'long'],
+
+  created: function created() {
+    this.addGoogleScript();
+  },
+
+
+  methods: {
+    addGoogleScript: function addGoogleScript() {
+      var googleMapScript = document.createElement('SCRIPT');
+    },
+    initMap: function initMap() {
+      var uluru = { lat: this.lat, lng: this.long };
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 9,
+        center: uluru
+      });
+
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(6)(
+  /* script */
+  __webpack_require__(300),
+  /* template */
+  __webpack_require__(302),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/amitavroy/code/tranvas/resources/assets/js/components/GoogleMap.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] GoogleMap.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4e6d396e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4e6d396e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "wrapper google-map"
+  }, [_c('div', {
+    attrs: {
+      "id": "map"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4e6d396e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
