@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>
@@ -39,12 +39,14 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{route('profile')}}">Profile</a></li>
+                            <li>
+                                <a href="{{route('profile')}}"><i class="fa fa-user"></i> Profile</a>
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Logout
+                                    <i class="fa fa-sign-out"></i> Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

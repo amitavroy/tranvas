@@ -1,4 +1,4 @@
-@extends('html')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -13,6 +13,11 @@
                 </div>
 
                 <div id="map"></div>
+                <gmap-map
+                    :center="{{ json_encode([ 'lat' => $event->lat, 'lng' => $event->long ]) }}"
+                    :zoom="6"
+                    style="width: 100%; height: 300px">
+                </gmap-map>
 
                 <table class="table table-bordered table-hover table-striped">
                     <tbody>
@@ -37,32 +42,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('footer-script')
-    <script>
-      function initMap() {
-        var uluru = {lat: {{$event->lat}}, lng: {{$event->long}} };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 9,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAP_API_KEY')}}&callback=initMap">
-    </script>
-@endsection
-
-@section('header-styles')
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
 @endsection

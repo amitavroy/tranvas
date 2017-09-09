@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,25 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-        return $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = Auth::user();
+
+        $user->name = $request->input('name');
+        $user->lat = $request->input('lat');
+        $user->long = $request->input('lng');
+        $user->save();
+
+        return redirect()->back();
     }
 }

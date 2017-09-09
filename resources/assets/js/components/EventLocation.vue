@@ -1,10 +1,24 @@
 <script>
   export default {
+    props: ['lat', 'long', 'zoomLevel'],
+
+    created () {
+      if (this.lat != null && this.long != null) {
+        this.location.lat = parseFloat(this.lat);
+        this.location.lng = parseFloat(this.long);
+      }
+
+      if (this.zoomLevel != null) {
+        this.zoom = parseInt(this.zoomLevel);
+      }
+    },
+
     data () {
       return {
+        zoom: 6,
         location: {
-          lat: 19.065236,
-          lng: 72.995742
+          lat: 22.538948,
+          lng: 88.332537
         },
         markers: [{
           position: {lat: 10.0, lng: 10.0}
@@ -37,8 +51,8 @@
       <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
       <gmap-map
         :center="location"
-        :zoom="6"
-        style="width: 500px; height: 300px">
+        :zoom=this.zoom
+        style="width: 100%; height: 300px">
         <gmap-marker
           :position="location"
           :clickable="true"
