@@ -8,7 +8,9 @@ before_script:
   - composer install --dev --prefer-source --no-interaction
   - cp .env.travis .env
   - php artisan key:generate
+  - npm install
 
 script:
  - vendor/bin/phpunit
  - vendor/bin/phpcs app --standard=PSR2
+ - node_modules/.bin/jest

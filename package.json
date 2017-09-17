@@ -7,19 +7,34 @@
     "watch-poll": "npm run watch -- --watch-poll",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
+    "test": "cross-env NODE_ENV=test jest",
+    "tdd": "npm run test -- --watch --notify",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "babel-jest": "^21.0.2",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
+    "jest": "^21.1.0",
     "jquery": "^3.1.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
+    "timemachine": "^0.3.0",
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "moment": "^2.18.1",
     "vue2-google-maps": "^0.7.9"
+  },
+  "jest": {
+    "testRegex": "test.js$",
+    "transform": {
+      "^.+\\.vue$": "<rootDir>/resources/assets/js/transformer/vue-jest.js",
+      "^.+\\.js$": "babel-jest"
+    }
   }
 }

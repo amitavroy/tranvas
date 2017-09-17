@@ -7,6 +7,7 @@
     <div class="date-time">
       {{ dateTimeString }}
     </div>
+
   </div>
 </template>
 
