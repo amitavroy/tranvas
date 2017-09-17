@@ -48,7 +48,7 @@
   <div class="EventLocation__wrapper">
     <label for="location">Location</label>
     <div id="location">
-      <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
+      <gmap-autocomplete @place_changed="setPlace" class="search-box form-control"></gmap-autocomplete>
       <gmap-map
         :center="location"
         :zoom=this.zoom
@@ -70,5 +70,8 @@
 </template>
 
 <style>
-
+  .search-box {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 </style>
