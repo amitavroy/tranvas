@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->text('description');
             $table->string('address');
             $table->float('lat', 10, 6);
-            $table->float('long', 10, 6);
+            $table->float('lng', 10, 6);
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedInteger('user_id');

@@ -25,11 +25,11 @@ class EventsController extends Controller
     public function index()
     {
         $upcomingEvents = $this->events->getUpcomingEvents();
-//        dd($upcomingEvents);
-
         $pastEvents = $this->events->getPastEvents();
+        $eventsNearBy = $this->events->eventsNearMe();
 
         return view('event/event-list')
+            ->with('eventsNearBy', $eventsNearBy)
             ->with('upcomingEvents', $upcomingEvents)
             ->with('pastEvents', $pastEvents);
     }
@@ -70,7 +70,7 @@ class EventsController extends Controller
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
             'lat' => $request->input('lat'),
-            'long' => $request->input('lng'),
+            'lng' => $request->input('lng'),
             'user_id' => $request->user()->id,
             'slug' => Str::slug($request->input('title')),
         ];

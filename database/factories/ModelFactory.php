@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
         'lat' => $faker->latitude,
-        'long' => $faker->longitude,
+        'lng' => $faker->longitude,
         'is_active' => 1,
     ];
 });
@@ -39,7 +39,7 @@ $factory->define(Event::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph(80),
         'address' => $faker->address,
         'lat' => $faker->latitude,
-        'long' => $faker->longitude,
+        'lng' => $faker->longitude,
         'start_date' => $start_date->format('Y-m-d'),
         'end_date' => $end_date->format('Y-m-d'),
         'slug' => \Illuminate\Support\Str::slug($title) . '-' . $uuid,

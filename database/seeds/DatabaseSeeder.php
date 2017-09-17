@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'reachme@amitavroy.com',
             'password' => bcrypt('password'),
             'lat' => 19.066857866225504,
-            'long' => 73.01437664031982,
+            'lng' => 73.01437664031982,
             'is_active' => 1,
         ]);
 

@@ -11,4 +11,5 @@ interface EventsRepository extends AbstractInterface
     public function getPastEvents();
     public function registerForEvent(Event $event);
     public function deRegisterFromEvent(Event $event);
+    public function eventsNearMe();
 }

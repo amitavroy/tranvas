@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_active')->default(0);
             $table->float('lat', 10, 6)->nullable();
-            $table->float('long', 10, 6)->nullable();
+            $table->float('lng', 10, 6)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

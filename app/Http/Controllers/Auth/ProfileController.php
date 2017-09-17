@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
         $user->name = $request->input('name');
         $user->lat = $request->input('lat');
-        $user->long = $request->input('lng');
+        $user->lng = $request->input('lng');
         $user->save();
 
         return redirect()->back();

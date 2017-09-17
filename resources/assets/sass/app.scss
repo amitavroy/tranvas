@@ -63,3 +63,12 @@ a {
     padding-left: #{$i * 10}px;
   }
 }
+
+.event-panel {
+  .panel-heading {
+    padding: 1px 5px 5px 10px;
+    h3 {
+      margin-top: 12px;
+    }
+  }
+}
