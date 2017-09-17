@@ -1,0 +1,46 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      },
+      "modules": false
+    }]
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": "current"
+          },
+        }]
+      ]
+    },
+    "development": {
+      "presets": [
+        ["env", {
+          "modules": false,
+          "targets": {
+            "browsers": "> 2%",
+            "uglify": true
+          }
+        }]
+      ]
+    },
+    "production": {
+      "presets": [
+        ["env", {
+          "modules": false,
+          "targets": {
+            "browsers": "> 2%",
+            "uglify": true
+          }
+        }]
+      ]
+    }
+  }
+}

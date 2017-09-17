@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vue clock component clock shows the current time 1`] = `
+"
+            <div id=\\"app\\"><p>Hello World!</p> <div class=\\"clock wrapper\\"><div class=\\"month-year\\">
+      December 1991
+    </div> <div class=\\"date-time\\">
+      Wed 01:12:59 PM
+    </div></div></div>
+        "
+`;
