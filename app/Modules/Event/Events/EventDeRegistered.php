@@ -8,7 +8,7 @@ use App\Modules\Event\Jobs\RegConfirmMail;
 use App\Modules\Event\Participant;
 use App\User;
 
-class EventRegistered
+class EventDeRegistered
 {
     /**
      * @var Participant
@@ -24,7 +24,7 @@ class EventRegistered
         $this->participant = $participant;
     }
 
-    public function handleEventRegistration()
+    public function handleEventDeRegistration()
     {
         $user = User::find($this->participant->user_id);
         $event = Event::find($this->participant->event_id);
@@ -34,6 +34,6 @@ class EventRegistered
 
     private function sendConfirmationToUser($user, $event)
     {
-        dispatch(new RegConfirmMail($user, $event));
+        dispatch(new DeRegConfirmMail($user, $event));
     }
 }
