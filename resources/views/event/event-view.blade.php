@@ -14,7 +14,7 @@
 
                 <div id="map"></div>
                 <gmap-map
-                    :center="{{ json_encode([ 'lat' => $event->lat, 'lng' => $event->long ]) }}"
+                    :center="{{ json_encode([ 'lat' => $event->lat, 'lng' => $event->lng ]) }}"
                     :zoom="6"
                     style="width: 100%; height: 300px">
                 </gmap-map>

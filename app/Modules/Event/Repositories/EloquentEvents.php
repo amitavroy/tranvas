@@ -83,11 +83,12 @@ class EloquentEvents extends AbstractRepository implements EventsRepository
         $lat = Auth::user()->lat;
         $lng = Auth::user()->long;
         $radius = 10;
+        $today = Carbon::today()->format('Y-m-d');
 
         $string = "SELECT id, address, title, start_date, end_date, slug, ( 6371 * acos( cos( radians(?) ) * 
         cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) 
-        AS distance FROM events HAVING distance < ? ORDER BY distance LIMIT 0 , 20;";
-        $args = [$lat, $lng, $lat, $radius];
+        AS distance FROM events WHERE end_date >= ? HAVING distance < ? ORDER BY distance LIMIT 0 , 20;";
+        $args = [$lat, $lng, $lat, $today, $radius];
 
         $data = DB::select($string, $args);
 

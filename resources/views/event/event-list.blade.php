@@ -10,19 +10,17 @@
             <hr>
 
             @foreach($upcomingEvents as $upcomingEvent)
-                <div class="panel panel-default event-panel">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-heading">
+                        <h3 class="panel-title">
                             <a href="{{route('event-view', $upcomingEvent->slug)}}">
                                 #{{$upcomingEvent->id}} {{$upcomingEvent->title}}
                             </a>
                         </h3>
-                        <small class="padding-left-10">{{$upcomingEvent->address}}</small>
                     </div>
                     <div class="panel-body">
                         <div class="meta-data margin-bottom-20">
-                            <strong>Start date: </strong>{{$upcomingEvent->start_date}}
-                            <br>
+                            <strong>Start date: </strong>{{$upcomingEvent->start_date}},
                             <strong>End date: </strong>{{$upcomingEvent->end_date}}
                             <br>
                             <strong>Created by: </strong><a href="#">{{$upcomingEvent->creator->name}}</a>
@@ -31,10 +29,13 @@
                             {!! limit_words($upcomingEvent->description, 50) !!}
                         </div>
                         <div class="register-button-container">
+                            <a href="{{route('event-view', $upcomingEvent->slug)}}" class="btn btn-warning">
+                                <i class="fa fa-eye"></i> View
+                            </a>
                             @if($upcomingEvent->user === null)
                                 <event-registration text="Register"
                                                     mode="btn-primary"
-                                                    event-id="{{$upcomingEvent->id}}"></event-registration>
+                                                    event-id="{{$upcomingEvent->id}}" class="pull-left margin-right-10"></event-registration>
                             @else
                                 <event-registration text="De-register"
                                                     mode="btn-warning"
@@ -48,25 +49,28 @@
             <h1>Past events</h1>
 
             @foreach($pastEvents as $pastEvent)
-                <div class="panel panel-default event-panel">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-heading">
+                        <h3 class="panel-title">
                             <a href="{{route('event-view', $pastEvent->slug)}}">
                                 #{{$pastEvent->id}} {{$pastEvent->title}}
                             </a>
                         </h3>
-                        <small>{{$pastEvent->address}}</small>
                     </div>
                     <div class="panel-body">
-                        <div class="meta-data">
-                            <strong>Start date: </strong>{{$pastEvent->start_date}}
-                            <br>
+                        <div class="meta-data margin-bottom-20">
+                            <strong>Start date: </strong>{{$pastEvent->start_date}},
                             <strong>End date: </strong>{{$pastEvent->end_date}}
                             <br>
                             <strong>Created by: </strong><a href="#">{{$pastEvent->creator->name}}</a>
                         </div>
-                        <div class="description">
-                            <p>{!! limit_words($pastEvent->description, 50) !!}</p>
+                        <div class="description margin-bottom-20">
+                            {!! limit_words($pastEvent->description, 50) !!}
+                        </div>
+                        <div class="register-button-container">
+                            <a href="{{route('event-view', $pastEvent->slug)}}" class="btn btn-warning">
+                                <i class="fa fa-eye"></i> View
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -93,6 +97,8 @@
                         </a>
                     @endforeach
                 </div>
+                @else
+                <p>No events nearby</p>
             @endif
         </div>
     </div>
