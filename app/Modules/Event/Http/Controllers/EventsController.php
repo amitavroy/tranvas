@@ -47,7 +47,7 @@ class EventsController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
             'address' => 'required',
@@ -56,12 +56,6 @@ class EventsController extends Controller
             'lat' => 'required',
             'lng' => 'required',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $attributes = [
             'title' => $request->input('title'),
