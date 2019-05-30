@@ -12,7 +12,6 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "axios": "^0.15.3",
     "babel-jest": "^21.0.2",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
@@ -24,6 +23,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
