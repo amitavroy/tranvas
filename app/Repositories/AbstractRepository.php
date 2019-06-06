@@ -6,7 +6,7 @@ class AbstractRepository implements AbstractInterface
 {
     public function getById($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->findOrFail($id);
     }
 
     public function getAll($limit = 10)
